@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
+import { environment as p } from 'src/environments/environment.prod';
 @Component({
   selector: 'sidenav',
   templateUrl: './sidenav.component.html',
@@ -12,6 +13,9 @@ export class SidenavComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(environment.production);
+    console.log(p.firebaseConfig);
+    
   }
 
 }
