@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.form-content {
+    width: 600px;
+    height: 100%;
+    margin-left: 32px;
+    background-color: teal;
+}
