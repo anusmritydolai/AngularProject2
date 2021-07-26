@@ -8,7 +8,19 @@
     <div class="form-content col-fill">
         <h2 style="margin-bottom: 0;"><b>Thank you so much for taking the time!</b></h2>
         <h4>please provle the below details!</h4>
-        <form [formGroup]="form" *ngIf="form" style="width: 100%;">
+        <form >
+            <mat-form-field appearance="fill">
+                <mat-label>First name</mat-label>
+                <input matInput>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Last name</mat-label>
+                <input matInput>
+              </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <textarea matInput></textarea>
+              </mat-form-field>
             <mat-form-field appearance="outline" fill>
                 <mat-label>Email</mat-label>
                 <mat-icon matPrefix>email</mat-icon>
@@ -18,27 +30,6 @@
                 </mat-error>
                 <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">ⓘ
                     Please enter a valid email address – it's invalid
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <mat-icon matPrefix>lock</mat-icon>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" autocomplete="on"
-                    placeholder="Password" required>
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-                <mat-error *ngIf="form.get('password').hasError('required')">ⓘ Please enter your password – it's
-                    required</mat-error>
-                <mat-error
-                    *ngIf="form.get('password').hasError('minlength') && !form.get('password').hasError('required')">
-                    ⓘ It's too short
-                </mat-error>
-                <mat-error
-                    *ngIf="form.get('password').hasError('maxlength') && !form.get('password').hasError('minlength')">
-                    ⓘ It's too long
                 </mat-error>
             </mat-form-field>
 

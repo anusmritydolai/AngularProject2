@@ -15,3 +15,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ANU_SAMPLE_PROJECTS }}'
           projectId: anu-sample-projects
+        env:
+          firebaseConfig: '${{ secrets.FIREBASECONFIG }}'
