@@ -3,8 +3,13 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+    background-color: aqua;
   }
   
   .example-sidenav {
-    padding: 20px;
+    padding: 16px;
+  }
+
+  .example-sidenav-content {
+    background-color: blueviolet;
   }

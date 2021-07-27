@@ -5,8 +5,21 @@
 }
 
 .form-content {
-    width: 600px;
+    width: 400px;
     height: 100%;
     margin-left: 32px;
-    background-color: teal;
+}
+
+.input-width { width: 300px; }
+
+::ng-deep .mat-form-field-infix { border: 0 !important; margin: 0 !important; }
+
+div mat-card { margin: 16px 0; }
+
+.mat-button-toggle {
+    background-color: rgb(9, 245, 9);
+}
+
+.mat-button-toggle-checked {
+    background-color: lightgrey;
 }

@@ -1,30 +1,73 @@
-<div style="background-color: blueviolet; width: 200px; height: 200px;">
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-        We are Listening!
-    </button>
+<div style="min-width: 200px;">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+                <ngs-avatar size='40px'></ngs-avatar>
+            </div>
+            <mat-card-title style="margin: 0;">Hi Reader,</mat-card-title>
+            <mat-card-subtitle style="margin: 0;">Here's your News!</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header style="justify-content: center;">
+            <mat-card-title>View Toggle</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="justify-content: center; text-align: center;">
+            <mat-button-toggle-group value=true>
+                <!-- <mat-button-toggle value=true><mat-icon>chrome_reader_mode</mat-icon></mat-button-toggle> -->
+                <mat-button-toggle value=true><mat-icon>article</mat-icon></mat-button-toggle>
+                <mat-button-toggle value=false><mat-icon>list</mat-icon></mat-button-toggle>
+            </mat-button-toggle-group>
+            <!-- <mat-icon>chrome_reader_mode</mat-icon>
+            <mat-icon>list</mat-icon> -->
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header style="justify-content: center;">
+            <mat-card-title>Have a Feedback?</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="text-align: center;">
+            <button (click)="toggle.emit(!showFiller); showFiller = !showFiller;" mat-raised-button>
+                We are Listening!
+            </button>
+        </mat-card-content>
+    </mat-card>
 
 </div>
-<mat-card *ngIf="showFiller">
+<mat-card *ngIf="showFiller" style="margin-left: 24px;">
     <div class="form-content col-fill">
-        <h2 style="margin-bottom: 0;"><b>Thank you so much for taking the time!</b></h2>
-        <h4>please provle the below details!</h4>
-        <form >
+        <h2 style="margin-bottom: 0; margin-left: 3px;"><b>Thank you so much for taking the time!</b></h2>
+        <h4 style="margin-left: 6px;">please provle the below details!</h4>
+        <form [formGroup]='form' style="display: flex; flex-direction: column; flex-grow: 1; height: 100%;">
+            <mat-label style="margin-left: 6px;">First Name</mat-label>
+            <mat-form-field class="input-width" appearance="fill">
+                <input matInput type="text" formControlName="firstname" placeholder="John" required>
+            </mat-form-field>
+            <mat-label style="margin-left: 6px;">Last name</mat-label>
+            <mat-form-field class="input-width" appearance="fill">
+                <input matInput type="text" formControlName="lastname" placeholder="Doe" required>
+            </mat-form-field>
+            <mat-label style="margin-left: 6px;">Address</mat-label>
             <mat-form-field appearance="fill">
-                <mat-label>First name</mat-label>
-                <input matInput>
-              </mat-form-field>
-              <mat-form-field appearance="fill">
-                <mat-label>Last name</mat-label>
-                <input matInput>
-              </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Address</mat-label>
-                <textarea matInput></textarea>
-              </mat-form-field>
-            <mat-form-field appearance="outline" fill>
-                <mat-label>Email</mat-label>
-                <mat-icon matPrefix>email</mat-icon>
-                <input matInput type="email" formControlName="email" placeholder="email" autocomplete="on" required>
+                <textarea matInput type="textarea" fromControlName="address"
+                    placeholder="Enter your full postal Address" required></textarea>
+            </mat-form-field>
+            <mat-label style="margin-left: 6px;">Country</mat-label>
+            <mat-form-field class="input-width" appearance="fill">
+                <input matInput formControlName="country" placeholder="Country" [matAutocomplete]="auto" required>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let country of filteredOptions | async" [value]="country"
+                        (click)="form.patchValue({countryCode: country.outputCode})">
+                        {{country?.outputName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-label style="margin-left: 6px;">Email</mat-label>
+            <mat-form-field class="input-width" appearance="fill">
+                <input matInput type="email" formControlName="email" placeholder="example@sample.com" autocomplete="on"
+                    required>
                 <mat-error *ngIf="form.get('email').hasError('required')">ⓘ Please enter your email id – it's
                     required
                 </mat-error>
@@ -32,6 +75,15 @@
                     Please enter a valid email address – it's invalid
                 </mat-error>
             </mat-form-field>
+            <mat-label style="margin-left: 6px;">Phone Number</mat-label>
+            <div class="input-width">
+                <mat-form-field appearance="fill" style="width: 56px; margin-right: 16px;">
+                    <input matInput type="text" formControlName="countryCode" placeholder="+91" required>
+                </mat-form-field>
+                <mat-form-field style="width: 228px;" appearance="fill">
+                    <input matInput type="tel" formControlName="phonenumber" placeholder="1234567890" required>
+                </mat-form-field>
+            </div>
 
             <button style="width: 220px; margin-bottom: 8px; margin-top: 8px; background-color:#173b67; color: white;"
                 mat-raised-button (click)="onLoginClick()">Submit Feedback</button>
