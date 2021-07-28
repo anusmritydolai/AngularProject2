@@ -3,31 +3,26 @@
     <sidenav (toggle)="toggle = $event"></sidenav>
   </mat-drawer>
 
-  <div class="example-sidenav-content" [style.margin-left]="toggle ? '-432px' : '0'">
-    <button type="button" mat-button>
-      Toggle sidenav
-    </button>
-    <button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button><button type="button" mat-button>
-      Toggle sidenav
-    </button>
-  </div>
+  <!-- [style.opacity]="toggle ? '0.55' : '1'"  -->
 
+  <div class="example-sidenav-content" [style.margin-left]="toggle ? '-432px' : '0'"
+    [style.background-color]="toggle ? 'rgba(0,0,0, 0.9)' : '#eaf2f7'">
+      <div class="row-fill" style="align-items: center; margin: 8px 16px;" *ngFor="let news of posts">
+        <mat-card style="width: 100%;">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <ngs-avatar size='40px'></ngs-avatar>
+            </div>
+            <mat-card-title style="margin: 0;">Hi Reader,</mat-card-title>
+            <mat-card-subtitle style="margin: 0;">Here's your News!</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+        <button mat-mini-fab style="background-color: white; margin-left: 32px;">
+          <mat-icon style="color: red;">close</mat-icon>
+        </button>
+
+      </div>
+    <mat-paginator (page)="pageEvent($event)" style="margin-top: 32px;" [length]="newses.length" [pageSize]="7" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
 </mat-drawer-container>

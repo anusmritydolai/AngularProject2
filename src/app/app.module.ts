@@ -21,6 +21,7 @@ import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgsavatarModule } from 'ngs-avatar';
 
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -38,7 +39,9 @@ import { NgsavatarModule } from 'ngs-avatar';
     MatAutocompleteModule,
     MatCardModule, MatIconModule,
     NgsavatarModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatIconModule,
+    MatPaginatorModule
   ],
   providers: [
     ApiService

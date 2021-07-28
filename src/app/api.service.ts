@@ -12,4 +12,10 @@ export class ApiService {
   public getCountryWithCode() {
     return this.httpClient.get(environment.countryCodeWithIndex);
   }
+
+  public getNews() {
+    return this.httpClient.get(environment.newsApi);
+  }
+
+
 }

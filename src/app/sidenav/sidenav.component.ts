@@ -25,7 +25,7 @@ export class SidenavComponent implements OnInit {
     address: new FormControl('', [Validators.required]),
     country: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phonenumber: new FormControl('', [Validators.required]),
+    phonenumber: new FormControl('', [Validators.required, Validators.maxLength(10)]),
     countryCode: new FormControl('', [Validators.required]),
   });
 
