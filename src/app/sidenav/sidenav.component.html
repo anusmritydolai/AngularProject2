@@ -16,8 +16,8 @@
         <mat-card-content style="justify-content: center; text-align: center;">
             <mat-button-toggle-group value=true>
                 <!-- <mat-button-toggle value=true><mat-icon>chrome_reader_mode</mat-icon></mat-button-toggle> -->
-                <mat-button-toggle value=true><mat-icon>article</mat-icon></mat-button-toggle>
-                <mat-button-toggle value=false><mat-icon>list</mat-icon></mat-button-toggle>
+                <mat-button-toggle value=true (click)="childList.emit(false)"><mat-icon>article</mat-icon></mat-button-toggle>
+                <mat-button-toggle value=false (click)="childList.emit(true)"><mat-icon>list</mat-icon></mat-button-toggle>
             </mat-button-toggle-group>
             <!-- <mat-icon>chrome_reader_mode</mat-icon>
             <mat-icon>list</mat-icon> -->

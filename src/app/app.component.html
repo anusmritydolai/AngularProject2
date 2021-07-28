@@ -1,28 +1,54 @@
 <mat-drawer-container class="example-container" autosize style="height: 100%;">
   <mat-drawer #drawer opened class="example-sidenav" mode="side" style="z-index: 9;">
-    <sidenav (toggle)="toggle = $event"></sidenav>
+    <sidenav (toggle)="toggle = $event" (childList)="list = $event"></sidenav>
   </mat-drawer>
 
   <!-- [style.opacity]="toggle ? '0.55' : '1'"  -->
 
   <div class="example-sidenav-content" [style.margin-left]="toggle ? '-432px' : '0'"
     [style.background-color]="toggle ? 'rgba(0,0,0, 0.9)' : '#eaf2f7'">
+    <!-- List view start -->
+    <div style="width: 100%;" *ngIf="list">
+
       <div class="row-fill" style="align-items: center; margin: 8px 16px;" *ngFor="let news of posts">
         <mat-card style="width: 100%;">
           <mat-card-header>
-            <div mat-card-avatar class="example-header-image">
-              <ngs-avatar size='40px'></ngs-avatar>
+            <div mat-card-avatar style="margin-right: 24px;">
+              <ngs-avatar size='56px' [photoUrl]="news?.src" [name]="news?.title"></ngs-avatar>
             </div>
-            <mat-card-title style="margin: 0;">Hi Reader,</mat-card-title>
-            <mat-card-subtitle style="margin: 0;">Here's your News!</mat-card-subtitle>
+            <mat-card-title style="margin: 0; font-size: medium;">{{news.title}}</mat-card-title>
+            <mat-card-subtitle style="margin: 0;">{{news.title}}</mat-card-subtitle>
           </mat-card-header>
+          <p style="margin: 0; margin-left: 80px; font-size: smaller;">{{news.published | date: 'EEE, d MMM y HH:mm z'}}
+          </p>
         </mat-card>
-        <button mat-mini-fab style="background-color: white; margin-left: 32px;">
+        <button mat-mini-fab style="background-color: white; margin-left: 16px;">
           <mat-icon style="color: red;">close</mat-icon>
         </button>
-
       </div>
-    <mat-paginator (page)="pageEvent($event)" style="margin-top: 32px;" [length]="newses.length" [pageSize]="7" [pageSizeOptions]="[5, 10, 25, 100]">
+      <!-- List view end -->
+    </div>
+    <!-- grid view start -->
+    <div class="row" style="width: 100%; flex-wrap: wrap;" *ngIf="!list">
+      <mat-card style="width: 256px; height: 320px; margin: 8px;" *ngFor="let news of posts; let i = index">
+        <mat-card-header style="justify-content: space-between;">
+          <mat-icon style="color: red;" (click)="close(news.index, i)">close</mat-icon>
+          <mat-card-title class="text-over" style="margin: 0; font-size: medium;">{{news.title}}</mat-card-title>
+          <mat-card-subtitle class="text-over" style="margin: 0;">{{news.title}}</mat-card-subtitle>
+        </mat-card-header>
+        <p style="margin: 0; font-size: smaller; margin-left: 16px;">{{news.published | date: 'EEE, d MMM y HH:mm z'}}
+        </p>
+        <img mat-card-image [src]="news?.src" style="
+        max-width: 260px;
+        max-height: 200px;
+        margin: auto;
+        margin-top: 16px;
+    " />
+      </mat-card>
+    </div>
+    <!-- grid view end -->
+    <mat-paginator (page)="pageEvent($event)" style="margin-top: 32px;" [length]="newses.length" [pageSize]="7"
+      [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
 </mat-drawer-container>

@@ -10,14 +10,12 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-
-  @Output() toggle = new EventEmitter()
+  @Output() childList = new EventEmitter();
+  @Output() toggle = new EventEmitter();
   countries: Country[] = [];
   showFiller = false;
   countryCode: string = '+91';
   filteredOptions: Observable<any[]>;
-
-  grid: boolean = false;
 
   form: FormGroup = new FormGroup({
     firstname: new FormControl('', [Validators.required]),
