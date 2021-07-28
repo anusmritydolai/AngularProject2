@@ -4,6 +4,9 @@
   align-items: center;
   justify-content: center;
   background-color: #eaf2f7;
+
+  padding: 10px;
+  box-shadow: 5px 5px 10px 5px #a5a5a5;
 }
 
 .example-sidenav {
@@ -14,6 +17,7 @@
   background-color: #eaf2f7;
   height: 100%;
   overflow-y: scroll;
+  z-index: 9;
 }
 
 .text-over {
@@ -25,4 +29,17 @@ display: -webkit-box;
 
 :host {
   overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  // width: 100%;
+  // height: 100%;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
 }

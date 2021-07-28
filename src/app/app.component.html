@@ -3,12 +3,12 @@
     <sidenav (toggle)="toggle = $event" (childList)="list = $event"></sidenav>
   </mat-drawer>
 
-  <!-- [style.opacity]="toggle ? '0.55' : '1'"  -->
+  <!-- [style.opacity]="toggle ? '0.55' : '1'"  [class.overlay]="toggle === true" [style.margin-left]="toggle ? '-200px' : '0'"
+    [style.background-color]="toggle ? 'rgba(0,0,0, 0.5)' : '#eaf2f7'" -->
 
-  <div class="example-sidenav-content" [style.margin-left]="toggle ? '-432px' : '0'"
-    [style.background-color]="toggle ? 'rgba(0,0,0, 0.9)' : '#eaf2f7'">
+  <div class="example-sidenav-content">
     <!-- List view start -->
-    <div style="width: 100%;" *ngIf="list">
+    <div style="width: 100%; z-index: 7;" *ngIf="list">
 
       <div class="row-fill" style="align-items: center; margin: 8px 16px;" *ngFor="let news of posts">
         <mat-card style="width: 100%;">
@@ -29,8 +29,8 @@
       <!-- List view end -->
     </div>
     <!-- grid view start -->
-    <div class="row" style="width: 100%; flex-wrap: wrap;" *ngIf="!list">
-      <mat-card style="width: 256px; height: 320px; margin: 8px;" *ngFor="let news of posts; let i = index">
+    <div class="row" style="width: 100%; flex-wrap: wrap; z-index: 7; justify-content: space-evenly;" *ngIf="!list">
+      <mat-card style="width: 240px; height: 320px; margin: 8px;" *ngFor="let news of posts; let i = index">
         <mat-card-header style="justify-content: space-between;">
           <mat-icon style="color: red;" (click)="close(news.index, i)">close</mat-icon>
           <mat-card-title class="text-over" style="margin: 0; font-size: medium;">{{news.title}}</mat-card-title>
@@ -39,7 +39,7 @@
         <p style="margin: 0; font-size: smaller; margin-left: 16px;">{{news.published | date: 'EEE, d MMM y HH:mm z'}}
         </p>
         <img mat-card-image [src]="news?.src" style="
-        max-width: 260px;
+        max-width: 244px;
         max-height: 200px;
         margin: auto;
         margin-top: 16px;
