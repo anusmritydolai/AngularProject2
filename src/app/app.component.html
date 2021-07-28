@@ -22,7 +22,7 @@
           <p style="margin: 0; margin-left: 80px; font-size: smaller;">{{news.published | date: 'EEE, d MMM y HH:mm z'}}
           </p>
         </mat-card>
-        <button mat-mini-fab style="background-color: white; margin-left: 16px;">
+        <button mat-mini-fab style="background-color: white; margin-left: 16px;" (click)="close(news.index, i)">
           <mat-icon style="color: red;">close</mat-icon>
         </button>
       </div>
