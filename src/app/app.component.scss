@@ -43,3 +43,7 @@ display: -webkit-box;
   z-index: 2;
   cursor: pointer;
 }
+
+::ng-deep .mat-dialog-container {
+  padding: 0 !important;
+}

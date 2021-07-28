@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ApiService } from './api.service';
 
 @Component({
@@ -24,19 +26,19 @@ export class AppComponent implements OnInit {
     "../assets/10.png"
   ]
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.apiService.getNews().subscribe((data: any) => {
       let index = 0;
-      this.newses = data.data.map(news=>{
+      this.newses = data.data.map(news => {
         const x = Math.floor(Math.random() * 9) + 1
         news.index = index;
         news.src = this.images[x];
         index++;
         return news;
       })
-      this.posts = this.newses.slice(0, 7);      
+      this.posts = this.newses.slice(0, 7);
     })
   }
 
@@ -56,4 +58,39 @@ export class AppComponent implements OnInit {
     this.newses.splice(index, 1, x);
     this.posts.splice(i, 1, x);
   }
+
+  openDialog(link) {
+    this.dialog.open(DialogDataExampleDialog, {
+      height: "75vh",
+      width: '80vw',
+      data: {
+        link: link
+      }
+    });
+  }
 }
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'dialog-data-example-dialog.html',
+})
+export class DialogDataExampleDialog {
+  safeUrl: SafeHtml;
+  @ViewChild('iframe') iframe;
+  constructor(
+    private sanitizer: DomSanitizer,
+    @Inject(MAT_DIALOG_DATA) public data,
+  ) {
+  }
+  ngOnInit() {
+    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.w3docs.com/learn-css/line-clamp.html');
+  }
+  ngAfterViewInit() {
+    if (this.iframe) {
+      //this.iframe.nativeElement.focus();
+      this.iframe.nativeElement.contentWindow.focus()
+
+    }
+  }
+}
+

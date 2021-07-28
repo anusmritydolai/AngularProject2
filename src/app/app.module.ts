@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, DialogDataExampleDialog } from './app.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -22,17 +22,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgsavatarModule } from 'ngs-avatar';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { FirebaseService } from './firebase.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    DialogDataExampleDialog
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     MatSidenavModule, MatButtonModule,
     FormsModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule,
     HttpClientModule,
@@ -41,10 +49,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     NgsavatarModule,
     MatButtonToggleModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [
-    ApiService
+    ApiService,
+    FirebaseService
   ],
   bootstrap: [AppComponent]
 })
