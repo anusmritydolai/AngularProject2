@@ -29,9 +29,9 @@
       <!-- List view end -->
     </div>
     <!-- grid view start -->
-    <div class="row" style="width: 100%; flex-wrap: wrap; z-index: 7; justify-content: space-evenly;" *ngIf="!list">
+    <div class="row" style="width: 100%; flex-wrap: wrap; z-index: 7; justify-content: center; text-align: center;" *ngIf="!list">
       <mat-card style="width: 240px; height: 320px; margin: 8px;" *ngFor="let news of posts; let i = index" (click)="openDialog(news?.link)">
-        <mat-card-header style="justify-content: space-between;">
+        <mat-card-header style="justify-content: center;">
           <mat-icon style="color: red;" (click)="close(news.index, i)">close</mat-icon>
           <mat-card-title class="text-over" style="margin: 0; font-size: medium;">{{news.title}}</mat-card-title>
           <mat-card-subtitle class="text-over" style="margin: 0;">{{news.title}}</mat-card-subtitle>

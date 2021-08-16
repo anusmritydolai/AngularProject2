@@ -30,8 +30,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.getNews().subscribe((data: any) => {
+      // console.log(data);
       let index = 0;
-      this.newses = data.data.map(news => {
+      this.newses = data.map(news => {
         const x = Math.floor(Math.random() * 9) + 1
         news.index = index;
         news.src = this.images[x];
