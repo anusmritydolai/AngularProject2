@@ -47,3 +47,9 @@ display: -webkit-box;
 ::ng-deep .mat-dialog-container {
   padding: 0 !important;
 }
+
+.example-form-field {
+  display: flex !important;
+  width: 100% !important; 
+  justify-content: flex-end;
+}

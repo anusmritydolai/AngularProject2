@@ -13,6 +13,10 @@ export class AppComponent implements OnInit {
   posts: any[];
   list: boolean = false;
 
+  search: string = '';
+
+
+
   images: string[] = [
     "../assets/1.jpg",
     "../assets/2.jpg",
@@ -38,7 +42,7 @@ export class AppComponent implements OnInit {
         index++;
         return news;
       })
-      this.posts = this.newses.slice(0, 7);
+     this.posts = this.newses.slice(0, 7); 
     })
   }
 
@@ -68,6 +72,16 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
+  searchtext() {
+    // console.log(this.search);
+    this.posts = this.newses.slice(0, 7); 
+
+    this.posts = this.posts.filter(news => {
+    return (news.title as string).toLowerCase().startsWith(this.search.toLowerCase());
+    })
+  }
+
 }
 
 @Component({
