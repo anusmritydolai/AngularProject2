@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
   }
 
   searchtext() {
-    // console.log(this.search);
+    console.log(this.search);
     this.posts = this.newses.slice(0, 7); 
 
     this.posts = this.posts.filter(news => {
